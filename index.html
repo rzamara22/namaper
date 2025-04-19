@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <title>Autocomplete Dropdown</title>
   <style>
+    html,
     body {
+      height: 0vh;
+      /* Hanya setengah layar */
+      margin: 0;
       font-family: Arial, sans-serif;
-      padding: 20px;
+      padding: 12px;
+      box-sizing: border-box;
     }
 
     input {
-      width: 95%;
+      width: 100%;
       padding: 10px;
-      font-size: 16px;
+      font-size: 14px;
       box-sizing: border-box;
     }
 
@@ -23,11 +29,13 @@
       border: 1px solid #ccc;
       max-height: 200px;
       overflow-y: auto;
+      text-align: left;
     }
 
     li {
       padding: 8px;
       cursor: pointer;
+      text-align: left;
     }
 
     li:hover {
@@ -35,17 +43,14 @@
     }
   </style>
 </head>
+
 <body>
-  <h2>Autocomplete Dropdown</h2>
-  <input type="text" id="search" placeholder="Cari item..." oninput="filter(this.value)">
+  <input type="text" id="search" placeholder="Ketik Nama Instansi / Perusahaan..." oninput="filter(this.value)">
   <ul id="results"></ul>
 
   <script>
     let items = [];
-
-    // Ganti URL ini dengan URL Google Apps Script kamu
     const dataURL = "https://script.google.com/macros/s/AKfycbwg3TX_oEplFqrgzE-d-Cn0uCHW0KcN-2o8qKJed5CsHmLPuULeJ2pHCCDbRyuj3qQy/exec";
-
     fetch(dataURL)
       .then(res => res.json())
       .then(data => {
@@ -70,4 +75,5 @@
     }
   </script>
 </body>
+
 </html>
