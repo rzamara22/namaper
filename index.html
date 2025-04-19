@@ -28,7 +28,7 @@
       list.innerHTML = "";
       items
         .filter(item => item.toLowerCase().includes(text.toLowerCase()))
-        .slice(0, 10) // batasi 10 hasil
+        .slice(0, 10) // batasi hasil maksimal
         .forEach(item => {
           let li = document.createElement("li");
           li.textContent = item;
