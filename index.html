@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <title>Autocomplete Dropdown</title>
@@ -18,7 +17,6 @@
       height: 100%;
       padding: 0;
       margin: 0;
-      /* Tidak pakai margin auto supaya tetap ke kiri */
     }
 
     input {
@@ -63,6 +61,7 @@
   <script>
     let items = [];
     const dataURL = "https://script.google.com/macros/s/AKfycbwg3TX_oEplFqrgzE-d-Cn0uCHW0KcN-2o8qKJed5CsHmLPuULeJ2pHCCDbRyuj3qQy/exec";
+
     fetch(dataURL)
       .then(res => res.json())
       .then(data => {
@@ -72,6 +71,8 @@
     function filter(text) {
       const list = document.getElementById("results");
       list.innerHTML = "";
+      if (text.trim() === "") return;
+
       items
         .filter(item => item.toLowerCase().includes(text.toLowerCase()))
         .slice(0, 1000)
@@ -85,6 +86,15 @@
           list.appendChild(li);
         });
     }
+
+    // Tutup dropdown saat klik di luar field input atau daftar hasil
+    document.addEventListener("click", function (event) {
+      const input = document.getElementById("search");
+      const results = document.getElementById("results");
+      if (!input.contains(event.target) && !results.contains(event.target)) {
+        results.innerHTML = "";
+      }
+    });
   </script>
 </body>
 
